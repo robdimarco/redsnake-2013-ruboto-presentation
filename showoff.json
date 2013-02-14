@@ -1,0 +1,8 @@
+{ "name": "Android Development With Ruboto", "sections": [ 
+  {"section" : "title"}, 
+  {"section" : "what"}, 
+  {"section" : "jruby"}, 
+  {"section" : "ruboto-hello-world"}, 
+  {"section" : "more-details"}, 
+  {"section" : "thanks"}
+]}
