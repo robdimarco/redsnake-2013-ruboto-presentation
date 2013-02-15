@@ -36,6 +36,8 @@
     
       <script type="text/javascript" src="./js/sh_lang/sh_ruby.min.js"></script>
     
+      <script type="text/javascript" src="./js/sh_lang/sh_xml.min.js"></script>
+    
   
 
   
@@ -106,16 +108,21 @@
 <p><img src="./file/title/dimarco.jpg" alt="Rob Di Marco"/>
 </p>
 </div>
-</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="background/background/1">
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="background/background/1">
+<h1>Getting Warmed Up</h1>
+
+<h2>Android SDK + JRuby =&gt; Ruboto</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="background/background/2">
 <h1>Android Basics</h1>
 
 <ul>
 <li>Java-based SDK</li>
 <li>Byte code compiled into Dalvik executables</li>
-<li>Code, data, and resources packaged in to APK files</li>
+<li>Code, data, and resources packaged in APK</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="background/background/2">
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="background/background/3">
 <h1>Android Components</h1>
 
 <ul>
@@ -126,8 +133,8 @@
 <li>Manifest file</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="none"><div class="content smaller" ref="background/background/3">
-<h1>Example Java Code</h1>
+</div><div class="slide" data-transition="none"><div class="content smaller" ref="background/background/4">
+<h1>Example Activity</h1>
 
 <pre class="sh_java"><code>    // JDK classes
     import java.util.ArrayList;
@@ -152,7 +159,7 @@
         }
     }</code></pre>
 </div>
-</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="background/background/4">
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="background/background/5">
 <h1>JRuby</h1>
 
 <ul>
@@ -161,7 +168,7 @@
 <li>Easy integration with Ruby and Java</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="none"><div class="content smaller" ref="background/background/5">
+</div><div class="slide" data-transition="none"><div class="content smaller" ref="background/background/6">
 <h1>Example JRuby code</h1>
 
 <pre class="sh_ruby"><code>
@@ -182,7 +189,7 @@
 
     require 'path/to/mycode.jar'</code></pre>
 </div>
-</div><div class="slide" data-transition="none"><div class="content fullpage" ref="background/background/6">
+</div><div class="slide" data-transition="none"><div class="content center" ref="background/background/7">
 <h1>Beautiful Ruby, Practical JVM</h1>
 
 <p><img src="./file/background/beauty_and_the_geek.png" alt="Beauty And The Geek"/>
@@ -198,35 +205,56 @@
 </ul>
 </div>
 </div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="ruboto/ruboto/2">
-<h1>About Ruboto</h1>
+<h1>On Ruboto</h1>
 
 <ul>
-<li>Requires Java, JRuby, and Android Installs</li>
+<li>Requires Java, JRuby, and Android SDK</li>
 <li>Packaged as a gem</li>
-<li>Application generation</li>
+<li>Code &amp; Development Framework</li>
 </ul>
 </div>
 </div><div class="slide" data-transition="none"><div class="content commandline" ref="ruboto/ruboto/3">
 <h1>Getting Started</h1>
 
+<h3>Reference: <a href="https://github.com/ruboto/ruboto/wiki/Setting-Up-a-Ruboto-Development-Environment">Getting Started Tutorial</a></h3>
+
 <pre><code><code class="command">$ ruboto gen app \
   --package org.ruboto.example.quick_start \
   --target=android-17</code>
 </code></pre>
-
-<p>Reference: <a href="https://github.com/ruboto/ruboto/wiki/Setting-Up-a-Ruboto-Development-Environment">Getting Started Tutorial</a></p>
 </div>
 </div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="ruboto/ruboto/4">
-<h1>What Did We Do</h1>
+<h1>What We Wrought</h1>
 
 <ul>
 <li>Project Configuration</li>
-<li>Android Configuration</li>
+<li>Android Manifest</li>
 <li>Java Integration Classes</li>
-<li>Ruby Activity</li>
+<li>Ruby Entry Activity</li>
 </ul>
 </div>
 </div><div class="slide" data-transition="none"><div class="content smaller" ref="ruboto/ruboto/5">
+<h1>Manifest</h1>
+
+<pre class="sh_xml"><code>&lt;manifest package='org.ruboto.example.quick_start'&gt;
+  &lt;application android:hardwareAccelerated='true' 
+    android:icon='@drawable/ic_launcher' 
+    android:label='@string/app_name'&gt;
+    &lt;activity android:label='@string/app_name'
+      android:name='QuickStartActivity'&gt;
+      &lt;intent-filter&gt;
+        &lt;action android:name='android.intent.action.MAIN'/&gt;
+        &lt;category android:name='android.intent.category.LAUNCHER'/&gt;
+      &lt;/intent-filter&gt;
+    &lt;/activity&gt;
+    &lt;activity android:name='org.ruboto.RubotoActivity'/&gt;
+    &lt;activity android:name='org.ruboto.RubotoDialog'/&gt;
+    &lt;service android:name='org.ruboto.RubotoService'/&gt;
+ &lt;/application&gt;
+ &lt;uses-sdk android:targetSdkVersion='17'/&gt;
+&lt;/manifest&gt;</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content smaller" ref="ruboto/ruboto/6">
 <h1>Java Activity Wrapper</h1>
 
 <pre class="sh_java"><code>package org.ruboto.example.quick_start;
@@ -236,12 +264,13 @@ import android.os.Bundle;
 public class QuickStartActivity 
    extends org.ruboto.EntryPointActivity {
   public void onCreate(Bundle bundle) {
-    getScriptInfo().setRubyClassName(getClass().getSimpleName());
+    getScriptInfo().setRubyClassName(
+     getClass().getSimpleName());
       super.onCreate(bundle);
   }
 }</code></pre>
 </div>
-</div><div class="slide" data-transition="none"><div class="content smaller" ref="ruboto/ruboto/6">
+</div><div class="slide" data-transition="none"><div class="content smaller" ref="ruboto/ruboto/7">
 <h1>Simplified Activity</h1>
 
 <pre class="sh_ruby"><code>require 'ruboto/widget'
@@ -271,7 +300,11 @@ class QuickStartActivity
 
 end</code></pre>
 </div>
-</div><div class="slide" data-transition="none"><div class="content smaller" ref="ruboto/ruboto/7">
+</div><div class="slide" data-transition="none"><div class="content center" ref="ruboto/ruboto/8">
+<p><img src="./file/ruboto/quick_start.png" alt="Voila"/>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content smaller" ref="ruboto/ruboto/9">
 <h1>Unit Testing</h1>
 
 <pre class="sh_ruby"><code>activity Java::org.ruboto.example.quick_start.QuickStartActivity
@@ -336,7 +369,7 @@ end</code></pre>
 <li>Google Play</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="none"><div class="content bullets" ref="deployment/deployment/6">
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="deployment/deployment/6">
 <h1>Ruboto IRB</h1>
 
 <ul>
