@@ -1,12 +1,12 @@
 !SLIDE bullets incremental
-# Android Development #
+# Android Basics #
 
-* Java-based SDK
-* Byte code compiled into Dalvik executables
-* App code, data, and resources packaged in to APK files
+ * Java-based SDK
+ * Byte code compiled into Dalvik executables
+ * Code, data, and resources packaged in to APK files
 
-!SLIDE bullets
-# Application Components #
+!SLIDE bullets incremental
+# Android Components #
 
  * Activities (single screen)
  * Services (background process)
