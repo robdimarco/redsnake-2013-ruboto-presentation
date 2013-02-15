@@ -29,7 +29,7 @@
 * Github (with QR Code!)
 * Google Play
 
-!SLIDE bullets
+!SLIDE bullets incremental
 # Ruboto IRB
 
 * Great for learning framework

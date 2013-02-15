@@ -1,9 +1,13 @@
+!SLIDE bullets
+# Getting Warmed Up
+## Android SDK + JRuby => Ruboto
+
 !SLIDE bullets incremental
 # Android Basics #
 
  * Java-based SDK
  * Byte code compiled into Dalvik executables
- * Code, data, and resources packaged in to APK files
+ * Code, data, and resources packaged in APK
 
 !SLIDE bullets incremental
 # Android Components #
@@ -15,7 +19,7 @@
  * Manifest file
 
 !SLIDE smaller
-# Example Java Code  #
+# Example Activity  #
 
     @@@java
 		// JDK classes
@@ -70,7 +74,7 @@
 
 		require 'path/to/mycode.jar'
 		
-!SLIDE fullpage
+!SLIDE center
 # Beautiful Ruby, Practical JVM
 
 ![Beauty And The Geek](beauty_and_the_geek.png)
