@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Android Development With Ruboto</title>
+
+  <meta name="viewport" content="width=device-width"/>
+
+  <link rel="stylesheet" href="./css/reset.css" type="text/css"/>
+  <link rel="stylesheet" href="./css/showoff.css" type="text/css"/>
+
+  <link type="text/css" href="./css/fg.menu.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href="./css/theme/ui.all.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href="./css/sh_style.css" rel="stylesheet" />
+
+  <script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
+  <script type="text/javascript" src="./js/jquery.cycle.all.js"></script>
+	<script type="text/javascript" src="./js/jquery-print.js"></script>
+  <script type="text/javascript" src="./js/jquery.batchImageLoad.js"></script>
+
+  <script type="text/javascript" src="./js/jquery.doubletap-0.1.js"></script>
+
+  <script type="text/javascript" src="./js/fg.menu.js"></script>
+  <script type="text/javascript" src="./js/showoff.js"></script>
+  <script type="text/javascript" src="./js/jTypeWriter.js"> </script>
+  <script type="text/javascript" src="./js/sh_main.min.js"></script>
+  <script type="text/javascript" src="./js/core.js"></script>
+  <script type="text/javascript" src="./js/showoffcore.js"></script>
+  <script type="text/javascript" src="./js/coffee-script.js"></script>
+
+  
+    
+      <script type="text/javascript" src="./js/sh_lang/sh_java.min.js"></script>
+    
+      <script type="text/javascript" src="./js/sh_lang/sh_ruby.min.js"></script>
+    
+  
+
+  
+
+  
+
+  <script type="text/javascript">
+  $(function(){
+      setupPreso(false, './');
+  });
+  </script>
+
+</head>
+
+<body>
+
+<a tabindex="0" href="#search-engines" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all" id="navmenu"><span class="ui-icon ui-icon-triangle-1-s"></span>slides</a>
+<div id="navigation" class="hidden"></div>
+
+<div id="help">
+  <table>
+    <tr><td class="key">z, ?</td><td>toggle help (this)</td></tr>
+    <tr><td class="key">space, &rarr;</td><td>next slide</td></tr>
+    <tr><td class="key">shift-space, &larr;</td><td>previous slide</td></tr>
+    <tr><td class="key">d</td><td>toggle debug mode</td></tr>
+    <tr><td class="key">## &lt;ret&gt;</td><td>go to slide #</td></tr>
+    <tr><td class="key">c, t</td><td>table of contents (vi)</td></tr>
+    <tr><td class="key">f</td><td>toggle footer</td></tr>
+    <tr><td class="key">r</td><td>reload slides</td></tr>
+    <tr><td class="key">n</td><td>toggle notes</td></tr>
+    <tr><td class="key">p</td><td>run preshow</td></tr>
+    <tr><td class="key">P</td><td>toggle pause</td></tr>
+  </table>
+</div>
+
+<div class="buttonNav">
+  <input type="submit" onClick="prevStep();" value="prev"/>
+  <input type="submit" onClick="nextStep();" value="next"/>
+</div>
+
+<div id="preso">loading presentation...</div>
+<div id="footer">
+  <span id="slideInfo"></span>
+  <span id="debugInfo"></span>
+  <span id="notesInfo"></span>
+</div>
+
+<div id="slides" class="offscreen" style="display:none;">
+<div class="slide" data-transition="none"><div class="content" ref="title/title/1">
+<h1>Android + Ruby =&gt; Ruboto</h1>
+
+<h2>RedSnake Philly, Feb. 15, 2013</h2>
+
+<p><img src="http://ruboto.org/images/ruboto_logo.png" alt="Ruboto"/>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="title/title/2">
+<h1>Me</h1>
+
+<h2>Rob Di Marco</h2>
+
+<h2>CTO, eLocal USA</h2>
+
+<h3>Twitter: <a href="http://www.twitter.com/iotr">@iotr</a></h3>
+
+<h3>GitHub: <a href="">http://github.com/robdimarco/</a></h3>
+
+<p><img src="./file/title/dimarco.jpg" alt="Rob Di Marco"/>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="background/background/1">
+<h1>Android Basics</h1>
+
+<ul>
+<li>Java-based SDK</li>
+<li>Byte code compiled into Dalvik executables</li>
+<li>Code, data, and resources packaged in to APK files</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="background/background/2">
+<h1>Android Components</h1>
+
+<ul>
+<li>Activities (single screen)</li>
+<li>Services (background process)</li>
+<li>Content Providers (data management)</li>
+<li>Broadcast Receivers (receives system messages)</li>
+<li>Manifest file</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content smaller" ref="background/background/3">
+<h1>Example Java Code</h1>
+
+<pre class="sh_java"><code>    // JDK classes
+    import java.util.ArrayList;
+    // Android API
+    import android.app.Activity;
+    import android.content.Context;
+    import android.os.Bundle;
+    import android.support.v4.view.ViewPager; // Local code
+
+    public class ActionBarTabsPager extends Activity {
+        ViewPager mViewPager;
+        TabsAdapter mTabsAdapter;
+
+        @Override
+        // Callback
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            mViewPager = new ViewPager(this);
+            mViewPager.setId(R.id.pager);
+            setContentView(mViewPager);
+        }
+    }</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="background/background/4">
+<h1>JRuby</h1>
+
+<ul>
+<li>100% Java implementation of Ruby</li>
+<li>Most of the Ruby Standard Lib, 1.9 compatible</li>
+<li>Easy integration with Ruby and Java</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content smaller" ref="background/background/5">
+<h1>Example JRuby code</h1>
+
+<pre class="sh_ruby"><code>
+    i = java.lang.Integer::MAX_VALUE
+    # 2147483647
+
+    a = java.util.ArrayList.new
+    # #&lt;Java::JavaUtil::ArrayList:0x111bda67&gt;
+
+    a &lt;&lt; "1"
+    # #&lt;Java::JavaUtil::ArrayList:0x111bda67&gt;
+
+    a &lt;&lt; 2
+    # #&lt;Java::JavaUtil::ArrayList:0x111bda67&gt;
+
+    a.map(&amp;:to_i).reduce(&amp;:+)
+    # 3
+
+    require 'path/to/mycode.jar'</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content fullpage" ref="background/background/6">
+<h1>Beautiful Ruby, Practical JVM</h1>
+
+<p><img src="./file/background/beauty_and_the_geek.png" alt="Beauty And The Geek"/>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="ruboto/ruboto/1">
+<h1>JRuby + Android =&gt; Ruboto</h1>
+
+<ul>
+<li>Requires Java, JRuby, and Android Installs</li>
+<li>Packaged as a Gem</li>
+<li>Provides application generator tool</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="ruboto/ruboto/2">
+<h1>Getting Started</h1>
+
+<pre><code><code class="command">$ ruboto gen app \
+  --package org.ruboto.example.quick_start \
+  --target=android-17</code>
+</code></pre>
+
+<p>Reference: <a href="https://github.com/ruboto/ruboto/wiki/Setting-Up-a-Ruboto-Development-Environment">Getting Started Tutorial</a></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="ruboto/ruboto/3">
+<h1>What Did We Do</h1>
+
+<ul>
+<li>Project Configuration</li>
+<li>Android Configuration</li>
+<li>Java Integration Classes</li>
+<li>Ruby Activity</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content smaller" ref="ruboto/ruboto/4">
+<h1>Java Activity Wrapper</h1>
+
+<pre class="sh_java"><code>package org.ruboto.example.quick_start;
+
+import android.os.Bundle;
+
+public class QuickStartActivity 
+   extends org.ruboto.EntryPointActivity {
+  public void onCreate(Bundle bundle) {
+    getScriptInfo().setRubyClassName(getClass().getSimpleName());
+      super.onCreate(bundle);
+  }
+}</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content smaller" ref="ruboto/ruboto/5">
+<h1>Simplified Activity</h1>
+
+<pre class="sh_ruby"><code>require 'ruboto/widget'
+require 'ruboto/util/toast'
+
+ruboto_import_widgets :Button, :LinearLayout, :TextView
+
+class QuickStartActivity
+  def on_create(bundle)
+    super
+    set_title 'Domo arigato, Mr Ruboto!'
+
+    self.content_view =
+        linear_layout(:orientation =&gt; :vertical) {
+          @text_view = text_view 
+           :text =&gt; 'What hath Matz wrought?'
+
+          button :text =&gt; 'M-x butterfly', 
+           :on_click_listener =&gt; proc { butterfly }
+        }
+  end
+
+  def butterfly
+    @text_view.text = 'What hath Matz wrought!'
+    toast 'Flipped a bit via butterfly'
+  end
+
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content smaller" ref="ruboto/ruboto/6">
+<h1>Unit Testing</h1>
+
+<pre class="sh_ruby"><code>activity Java::org.ruboto.example.quick_start.QuickStartActivity
+
+setup do |activity|
+  start = Time.now
+  loop do
+    @text_view = activity.findViewById(42)
+    break if @text_view || (Time.now - start &gt; 60)
+    sleep 1
+  end
+  assert @text_view
+end
+
+test('initial setup') do |activity|
+  assert_equal "What hath Matz wrought?", @text_view.text
+end
+
+test('button changes text') do |activity|
+  button = activity.findViewById(43)
+  button.performClick
+  assert_equal "What hath Matz wrought!", @text_view.text
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="ruboto/ruboto/7">
+<h1>Deploying</h1>
+
+<pre><code><code class="command">$ rake install start</code>
+</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="ruboto/ruboto/8">
+<h1>Deployment Details</h1>
+
+<ul>
+<li>Compile Java code</li>
+<li>Build APK package</li>
+<li>Install on emulator</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="deployment/deployment">
+<h1>Deployment</h1>
+
+<ul>
+<li>rake tasks</li>
+<li>With or without embedded JRuby</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="thanks/thanks/1">
+<h1>With Ruboto</h1>
+
+<ul>
+<li>Best of Ruby and Java</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="thanks/thanks/2">
+<h1>Thanks</h1>
+
+<ul>
+<li><a href="http://ruboto.org/">Ruboto</a></li>
+<li><a href="http://jruby.org">JRuby</a></li>
+<li><a href="http://developer.android.com/develop/index.html">Android</a></li>
+<li><a href="http://robdimarco.github.com/redsnake-2013-ruboto-presentation/">This Presentation</a></li>
+<li><a href="http://github.com/robdimarco/redsnake-2013-ruboto-presentation">Presentation Git Project</a></li>
+</ul>
+</div>
+</div></div>
+<div id="pauseScreen">
+  
+</div>
+
+</body>
+</html>
