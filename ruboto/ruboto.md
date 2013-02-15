@@ -1,8 +1,14 @@
 !SLIDE bullets incremental
 # JRuby + Android => Ruboto
+* Opens up full Android SDK in Ruby
+* Ruby components whenever possible
+* Build and deployment framework
+
+!SLIDE bullets incremental
+# About Ruboto
  * Requires Java, JRuby, and Android Installs
- * Packaged as a Gem
- * Provides application generator tool
+ * Packaged as a gem
+ * Application generation
 
 !SLIDE commandline
 # Getting Started
@@ -93,16 +99,3 @@ Reference: [Getting Started Tutorial](https://github.com/ruboto/ruboto/wiki/Sett
       button.performClick
       assert_equal "What hath Matz wrought!", @text_view.text
     end
-    
-
-!SLIDE commandline
-# Deploying
-
-    $ rake install start
-
-!SLIDE bullets incremental
-# Deployment Details
-
-* Compile Java code
-* Build APK package
-* Install on emulator
