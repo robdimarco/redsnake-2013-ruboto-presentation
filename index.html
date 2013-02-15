@@ -192,12 +192,21 @@
 <h1>JRuby + Android =&gt; Ruboto</h1>
 
 <ul>
-<li>Requires Java, JRuby, and Android Installs</li>
-<li>Packaged as a Gem</li>
-<li>Provides application generator tool</li>
+<li>Opens up full Android SDK in Ruby</li>
+<li>Ruby components whenever possible</li>
+<li>Build and deployment framework</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="none"><div class="content commandline" ref="ruboto/ruboto/2">
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="ruboto/ruboto/2">
+<h1>About Ruboto</h1>
+
+<ul>
+<li>Requires Java, JRuby, and Android Installs</li>
+<li>Packaged as a gem</li>
+<li>Application generation</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="ruboto/ruboto/3">
 <h1>Getting Started</h1>
 
 <pre><code><code class="command">$ ruboto gen app \
@@ -207,7 +216,7 @@
 
 <p>Reference: <a href="https://github.com/ruboto/ruboto/wiki/Setting-Up-a-Ruboto-Development-Environment">Getting Started Tutorial</a></p>
 </div>
-</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="ruboto/ruboto/3">
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="ruboto/ruboto/4">
 <h1>What Did We Do</h1>
 
 <ul>
@@ -217,7 +226,7 @@
 <li>Ruby Activity</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="none"><div class="content smaller" ref="ruboto/ruboto/4">
+</div><div class="slide" data-transition="none"><div class="content smaller" ref="ruboto/ruboto/5">
 <h1>Java Activity Wrapper</h1>
 
 <pre class="sh_java"><code>package org.ruboto.example.quick_start;
@@ -232,7 +241,7 @@ public class QuickStartActivity
   }
 }</code></pre>
 </div>
-</div><div class="slide" data-transition="none"><div class="content smaller" ref="ruboto/ruboto/5">
+</div><div class="slide" data-transition="none"><div class="content smaller" ref="ruboto/ruboto/6">
 <h1>Simplified Activity</h1>
 
 <pre class="sh_ruby"><code>require 'ruboto/widget'
@@ -262,7 +271,7 @@ class QuickStartActivity
 
 end</code></pre>
 </div>
-</div><div class="slide" data-transition="none"><div class="content smaller" ref="ruboto/ruboto/6">
+</div><div class="slide" data-transition="none"><div class="content smaller" ref="ruboto/ruboto/7">
 <h1>Unit Testing</h1>
 
 <pre class="sh_ruby"><code>activity Java::org.ruboto.example.quick_start.QuickStartActivity
@@ -287,13 +296,13 @@ test('button changes text') do |activity|
   assert_equal "What hath Matz wrought!", @text_view.text
 end</code></pre>
 </div>
-</div><div class="slide" data-transition="none"><div class="content commandline" ref="ruboto/ruboto/7">
-<h1>Deploying</h1>
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="deployment/deployment/1">
+<h1>Basic Installation</h1>
 
 <pre><code><code class="command">$ rake install start</code>
 </code></pre>
 </div>
-</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="ruboto/ruboto/8">
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="deployment/deployment/2">
 <h1>Deployment Details</h1>
 
 <ul>
@@ -302,22 +311,50 @@ end</code></pre>
 <li>Install on emulator</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="deployment/deployment">
-<h1>Deployment</h1>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="deployment/deployment/3">
+<h1>Running on Device</h1>
 
 <ul>
-<li>rake tasks</li>
-<li>With or without embedded JRuby</li>
+<li>Use Ruboto Core Platform App</li>
+<li>OR</li>
+<li>Bundle JRuby jars in Package</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="none"><div class="content" ref="thanks/thanks/1">
-<h1>With Ruboto</h1>
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="deployment/deployment/4">
+<h1>Ruby Script Update</h1>
+
+<pre><code><code class="command">$ rake update_scripts</code>
+</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="deployment/deployment/5">
+<h1>Physical Devices</h1>
 
 <ul>
-<li>Best of Ruby and Java</li>
+<li>SD Card / USB</li>
+<li>Dropbox</li>
+<li>Github (with QR Code!)</li>
+<li>Google Play</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="none"><div class="content" ref="thanks/thanks/2">
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="deployment/deployment/6">
+<h1>Ruboto IRB</h1>
+
+<ul>
+<li>Great for learning framework</li>
+<li>demo-opengl.rb </li>
+<li><a href="https://github.com/ruboto/ruboto-irb">https://github.com/ruboto/ruboto-irb</a></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="deployment/deployment/7">
+<h1>Caveats</h1>
+
+<ul>
+<li>Performance (Startup/Optimization)</li>
+<li>Callbacks (Java calling Ruby)</li>
+<li>Currently limited to Activities, BroadcastReceievers, and Services</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="thanks/thanks">
 <h1>Thanks</h1>
 
 <ul>
@@ -325,7 +362,7 @@ end</code></pre>
 <li><a href="http://jruby.org">JRuby</a></li>
 <li><a href="http://developer.android.com/develop/index.html">Android</a></li>
 <li><a href="http://robdimarco.github.com/redsnake-2013-ruboto-presentation/">This Presentation</a></li>
-<li><a href="http://github.com/robdimarco/redsnake-2013-ruboto-presentation">Presentation Git Project</a></li>
+<li><a href="http://github.com/robdimarco/redsnake-2013-ruboto-presentation">on Github</a></li>
 </ul>
 </div>
 </div></div>
